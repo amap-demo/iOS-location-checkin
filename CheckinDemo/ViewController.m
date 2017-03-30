@@ -175,6 +175,7 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     POITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:POITableViewCellIdentifier forIndexPath:indexPath];
+    cell.accessibilityIdentifier = [NSString stringWithFormat:@"POITableViewCell_%ld",(long)indexPath.row];  //for UITest
     
     AMapPOI *POI = self.POIDataArray[indexPath.row];
     
