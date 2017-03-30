@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="POITableViewCellIdentifier" rowHeight="62" id="KGk-i7-Jjw" customClass="POITableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商铺名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH7-GD-zeO">
+                        <rect key="frame" x="15" y="8" width="277" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Nn8-oH-gkS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商铺地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dR-3z-Hv9">
+                        <rect key="frame" x="15" y="35" width="277" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Pe7-iO-J8o"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.60867447985543144" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welfare_icon_choice_pressed.png" translatesAutoresizingMaskIntoConstraints="NO" id="Swl-7Q-utH">
+                        <rect key="frame" x="312" y="21.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="2XY-de-jca"/>
+                            <constraint firstAttribute="height" constant="20" id="aUr-mI-cju"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NH7-GD-zeO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="AHf-xW-O1h"/>
+                    <constraint firstAttribute="trailing" secondItem="Swl-7Q-utH" secondAttribute="trailing" constant="10" id="P0Z-9S-FG2"/>
+                    <constraint firstItem="4dR-3z-Hv9" firstAttribute="trailing" secondItem="NH7-GD-zeO" secondAttribute="trailing" id="VCW-56-64U"/>
+                    <constraint firstAttribute="trailing" secondItem="4dR-3z-Hv9" secondAttribute="trailing" constant="50" id="fK6-q1-61n"/>
+                    <constraint firstItem="NH7-GD-zeO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="ghq-qr-FCf"/>
+                    <constraint firstItem="4dR-3z-Hv9" firstAttribute="top" secondItem="NH7-GD-zeO" secondAttribute="bottom" constant="6" id="lPR-LI-Up6"/>
+                    <constraint firstItem="4dR-3z-Hv9" firstAttribute="leading" secondItem="NH7-GD-zeO" secondAttribute="leading" id="tYU-Mh-0FU"/>
+                    <constraint firstItem="Swl-7Q-utH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uE0-Gw-YCR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="infoLabel" destination="4dR-3z-Hv9" id="3vN-bG-VBh"/>
+                <outlet property="nameLabel" destination="NH7-GD-zeO" id="B88-I7-sFq"/>
+                <outlet property="selectedImageView" destination="Swl-7Q-utH" id="c5g-9X-rc7"/>
+            </connections>
+            <point key="canvasLocation" x="36" y="61"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="welfare_icon_choice_pressed.png" width="28" height="28"/>
+    </resources>
+</document>
