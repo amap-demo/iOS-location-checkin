@@ -101,7 +101,7 @@
         annotation.coordinate = location.coordinate;
         [weakSelf.mapView addAnnotation:annotation];
         annotation.lockedToScreen = YES;
-        annotation.lockedScreenPoint =CGPointMake(weakSelf.mapView.bounds.size.width / 2, weakSelf.mapView.bounds.size.height / 2) ;
+        annotation.lockedScreenPoint = CGPointMake(weakSelf.mapView.bounds.size.width / 2, weakSelf.mapView.bounds.size.height / 2) ;
         
         //添加500米的范围圈
         MACircle *circleOverlay = [MACircle circleWithCenterCoordinate:location.coordinate radius:500];
@@ -112,6 +112,7 @@
         [weakSelf.mapView selectAnnotation:annotation animated:YES];
         [weakSelf.mapView setCenterCoordinate:location.coordinate animated:NO];
         
+        //搜索POI
         [weakSelf searchAllPOIAround:location.coordinate];
     }];
 }
@@ -204,6 +205,7 @@
 
 #pragma mark - MAMapViewDelegate
 
+//地图区域改变完成后会调用此接口
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     
     if (!CLLocationCoordinate2DIsValid(self.currentGPSCoordinate)) {  //非法的时候需返回

@@ -8,3 +8,10 @@ target "CheckinDemo" do
 
 end
 
+target "CheckinDemo-swift" do
+    
+    pod 'AMap3DMap'
+    pod 'AMapSearch'
+    pod 'AMapLocation'
+    
+end
