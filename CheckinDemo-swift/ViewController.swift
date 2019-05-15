@@ -195,6 +195,12 @@ class ViewController: UIViewController ,AMapLocationManagerDelegate, MAMapViewDe
         self.mapView.setZoomLevel(19.0, animated: true)
     }
     
+    // MARK: - AMapLocationManagerDelegate
+    
+    func amapLocationManager(_ manager: AMapLocationManager!, doRequireLocationAuth locationManager: CLLocationManager!) {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
     // MARK: - AMapSearchDelegate
     
     func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
@@ -203,9 +209,11 @@ class ViewController: UIViewController ,AMapLocationManagerDelegate, MAMapViewDe
     }
     
     // MARK: - MapViewDelegate
-    
-    //地图区域改变完成后会调用此接口
-    func mapView(_ mapView: MAMapView!, regionDidChangeAnimated animated: Bool) {
+    //  地图移动结束后调用此接口 wasUserAction 标识是否是用户动作
+    func mapView(_ mapView: MAMapView!, mapDidMoveByUser wasUserAction: Bool) {
+        if wasUserAction == false {
+            return;
+        }
         
         if CLLocationCoordinate2DIsValid(self.currentGPSCoordinate!) == false {
             return
