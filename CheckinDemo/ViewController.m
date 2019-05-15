@@ -197,6 +197,12 @@
     [self.mapView setZoomLevel:19 animated:YES];
 }
 
+#pragma mark - AMapLocationManagerDelegate
+
+- (void)amapLocationManager:(AMapLocationManager *)manager doRequireLocationAuth:(CLLocationManager*)locationManager {
+    [locationManager requestAlwaysAuthorization];
+}
+
 #pragma mark - AMapSearchDelegate
 
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response{
@@ -206,23 +212,30 @@
 
 #pragma mark - MAMapViewDelegate
 
-//地图区域改变完成后会调用此接口
-- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    
+- (void)mapViewRequireLocationAuth:(CLLocationManager *)locationManager {
+    [locationManager requestAlwaysAuthorization];
+}
+
+- (void)mapView:(MAMapView *)mapView mapDidMoveByUser:(BOOL)wasUserAction {
+    if (!wasUserAction) {
+        return;
+    }
     if (!CLLocationCoordinate2DIsValid(self.currentGPSCoordinate)) {  //非法的时候需返回
         return;
     }
-    
     double dis = [self distanceBetweenCoordinates:mapView.centerCoordinate and:self.currentGPSCoordinate];
-    
-    if (dis > 500) {
-        [self.mapView setZoomLevel:15.5 animated:YES];
-        [self.mapView setCenterCoordinate:self.currentGPSCoordinate animated:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"调整距离不可超过500米" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if (dis > 500 ) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"调整距离不可超过500米" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
-    
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self.mapView setZoomLevel:15.5 animated:YES];
+    [self.mapView setCenterCoordinate:self.currentGPSCoordinate animated:YES];
+}
+
+
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
     if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
